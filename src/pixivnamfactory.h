@@ -2,8 +2,10 @@
 // SPDX-FileCopyrightText: 2025 Micro <microgamercz@proton.me>
 
 #include "pikiconfig.h"
+#include <QDir>
 #include <QNetworkDiskCache>
 #include <QQmlNetworkAccessManagerFactory>
+#include <QStandardPaths>
 #include <qmath.h>
 #include <qnetworkaccessmanager.h>
 #include <qqmlengine.h>
@@ -44,8 +46,8 @@ public:
             cache = infinity;
         diskCache->setMaximumCacheSize(cache);
 
-        QString cachePath = PikiConfig::self()->cachePath();
-        diskCache->setCacheDirectory(cachePath + "cache");
+        const QString cachePath = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+        diskCache->setCacheDirectory(cachePath % QDir::separator() % "cache");
 
         networkAccessManager->setCache(diskCache);
 

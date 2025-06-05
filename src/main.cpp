@@ -55,7 +55,6 @@ int main(int argc, char *argv[])
 #endif
 
     KLocalizedString::setApplicationDomain("piki");
-    QCoreApplication::setOrganizationName(u"io.github.micro"_s);
 
     KAboutData aboutData(
         // The program name used internally.

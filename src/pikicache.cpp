@@ -31,10 +31,10 @@ TagHistoryResult TagHistoryResult::fromSql(ColumnTypes &&tuple)
 Cache::Cache(QObject *parent)
     : QObject(parent)
 {
-    conf = PikiConfig::self();
+    const QString cacheDir = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
 
     DatabaseConfiguration config;
-    config.setDatabaseName(conf->cachePath() + "data.sqlite");
+    config.setDatabaseName(cacheDir % QDir::separator() % "data.sqlite");
     config.setType(DatabaseType::SQLite);
 
     database = ThreadedDatabase::establishConnection(config);

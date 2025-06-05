@@ -39,7 +39,6 @@ class Cache : public QObject
     QML_ELEMENT
     QML_SINGLETON
 
-    PikiConfig *conf;
     std::unique_ptr<ThreadedDatabase> database;
     QHash<int, Illustration *> illustCache;
     QCoro::Task<void> PushTagHistoryTask(QList<Tag *> tags);
